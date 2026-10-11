@@ -37,6 +37,12 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
+      - name: Fix paths for GitHub Pages
+        run: |
+          cd frontend/dist
+          sed -i 's|href="/|href="./|g' index.html
+          sed -i 's|src="/|src="./|g' index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
